@@ -16,41 +16,6 @@
     <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\Config\*.editorconfig" />
   </ItemGroup>
 
-  <Target Name="ValidatePvzReDir" BeforeTargets="BeforeBuild">
-    <Error Condition="!Exists('$(PvzReDir)')" Text="PvzReDir '$(PvzReDir)' does not exist. Set PvzReDir to a valid installation path." />
-    <Error Condition="Exists('$(PvzReDir)') and !Exists('$(PvzReDir)\MelonLoader')" Text="MelonLoader folder not found under '$(PvzReDir)'. Ensure MelonLoader is installed." />
-  </Target>
-
-  <PropertyGroup>
-    <VersionFile>
-      <![CDATA[
-namespace $(RootNamespace).Metadata%3B
-
-internal static class ModInfo
-{
-    public const string Name = nameof($(RootNamespace))%3B
-
-    public const string Version = "$(ModVersion)"%3B
-
-    public const string Author = "$(ModAuthor)"%3B
-
-    public const string DownloadLink = "$(ModDownloadLink)"%3B
-}
-      ]]>
-    </VersionFile>
-  </PropertyGroup>
-
-  <Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)ModInfo.cs">
-    <PropertyGroup>
-      <GeneratedFilePath>$(IntermediateOutputPath)ModInfo.cs</GeneratedFilePath>
-    </PropertyGroup>
-    <ItemGroup>
-      <Compile Include="$(GeneratedFilePath)" />
-      <FileWrites Include="$(GeneratedFilePath)" />
-    </ItemGroup>
-    <WriteLinesToFile File="$(GeneratedFilePath)" Lines="$(VersionFile)" WriteOnlyWhenDifferent="true" Overwrite="true" />
-  </Target>
-  
   <ItemGroup Condition="'$(EnableDefaultModReferences)' == 'true'">
     <Reference Include="$(PvzReDir)\MelonLoader\Il2CppAssemblies\*.dll" />
     <Reference Include="$(PvzReDir)\MelonLoader\net6\MelonLoader.dll" />
@@ -58,10 +23,6 @@ internal static class ModInfo
     <Reference Include="$(PvzReDir)\MelonLoader\net6\Il2CppInterop.Runtime.dll" />
     <Reference Include="$(PvzReDir)\MelonLoader\net6\Il2CppInterop.Common.dll" />
   </ItemGroup>
-
-  <Target Name="CopyDllToMods" AfterTargets="PostBuildEvent">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PvzReDir)\Mods" />
-  </Target>
 
   <ItemGroup>
 
@@ -82,31 +43,7 @@ internal static class ModInfo
 
   </ItemGroup>
 
-  <Target Name="CleanZipFiles" BeforeTargets="Clean">
-    <ItemGroup>
-      <ZipFilesToDelete Include="$(OutputPath)*.zip" />
-    </ItemGroup>
-    <Delete Files="@(ZipFilesToDelete)" />
-  </Target>
-
-  <Target Name="ZipPublishWithFolder" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
-
-    <PropertyGroup>
-      <ZipStage>$(BaseIntermediateOutputPath)ZipStage</ZipStage>
-      <ZipFolderName>Mods</ZipFolderName>
-      <ZipFileName>$(AssemblyName)$(ModVersion.Replace('.', '-')).zip</ZipFileName>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <FilesToZip Include="$(TargetDir)**\*" Exclude="$(TargetDir)**\*.zip" />
-    </ItemGroup>
-    <RemoveDir Directories="$(ZipStage)" />
-    <MakeDir Directories="$(ZipStage)\$(ZipFolderName)" />
-    <Copy SourceFiles="@(FilesToZip)" DestinationFolder="$(ZipStage)\$(ZipFolderName)" />
-    <ZipDirectory SourceDirectory="$(ZipStage)" DestinationFile="$(OutputPath)$(ZipFileName)" Overwrite="true" />
-    <RemoveDir Directories="$(ZipStage)" />
-
-  </Target>
+  <Import Project="Sdk.ModBuild.props" Condition="'$(IsModBuild)' == 'true'" />
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   

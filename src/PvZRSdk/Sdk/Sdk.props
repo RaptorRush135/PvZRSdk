@@ -15,13 +15,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
     <LangVersion>latest</LangVersion>
-    <GenerateDependencyFile>false</GenerateDependencyFile>
     <PlatformTarget>x64</PlatformTarget>
-    <IsPackable>false</IsPackable>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <PropertyGroup>
+    <IsModBuild Condition="'$(IsModBuild)' == ''">true</IsModBuild>
     <EnableDefaultModReferences Condition="'$(EnableDefaultModReferences)' == ''">true</EnableDefaultModReferences>
   </PropertyGroup>
 
@@ -30,12 +29,6 @@
     <ModAuthor>???</ModAuthor>
     <ModDownloadLink>TODO</ModDownloadLink>
   </PropertyGroup>
-
-  <ItemDefinitionGroup>
-    <Reference>
-      <Private>false</Private>
-    </Reference>
-  </ItemDefinitionGroup>
 
   <PropertyGroup>
     <GenerateDocumentationFile Condition="'$(Configuration)' != 'Release'">true</GenerateDocumentationFile>
