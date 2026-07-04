@@ -1,25 +1,6 @@
 is_global = true
 global_level = 0
 
-[*]
-guidelines = 120
-
-[*.{csproj,props}]
-indent_style = space
-indent_size = 2
-tab_width = 2
-
-# C# files
-[*.cs]
-
-#### Core EditorConfig Options ####
-
-# Indentation and spacing
-indent_size = 4
-indent_style = space
-tab_width = 4
-insert_final_newline = true
-
 #### .NET Code Actions ####
 
 # Type members
@@ -257,9 +238,6 @@ dotnet_diagnostic.CS8524.severity = none
 # IDE
 dotnet_diagnostic.IDE0005.severity = warning
 dotnet_diagnostic.IDE0130.severity = error
-
-# StyleCop
-dotnet_diagnostic.SA1516.severity = error
 
 # Sonar
 dotnet_diagnostic.S1172.severity = none # False positives, use IDE0060 & RCS1163
