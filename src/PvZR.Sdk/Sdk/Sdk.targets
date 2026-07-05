@@ -4,13 +4,26 @@
     <Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />
   </Target>
 
-  <PropertyGroup>
-    <Version>$(ModVersion)</Version>
-  </PropertyGroup>
-
   <ItemGroup>
     <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\Config\*.editorconfig" />
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(ModVersion)' != ''">
+    <Version>$(ModVersion)</Version>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(ModVersion)' == ''">
+    <PackageReference Include="MinVer" Version="7.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="SetModVersion" DependsOnTargets="MinVer" Condition="'$(ModVersion)' == ''">
+    <PropertyGroup>
+      <ModVersion>$(Version)</ModVersion>
+    </PropertyGroup>
+  </Target>
 
   <ItemGroup>
 

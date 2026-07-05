@@ -25,7 +25,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ModVersion Condition="'$(ModVersion)' == ''">0.0.1</ModVersion>
     <ModAuthor Condition="'$(ModAuthor)' == ''">???</ModAuthor>
     <ModDownloadLink Condition="'$(ModDownloadLink)' == ''">TODO</ModDownloadLink>
   </PropertyGroup>
