@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>PvZR.Sdk</PackageId>
-    <Version>0.0.10</Version>
+    <Version>0.0.11</Version>
     <PackageType>MSBuildSdk</PackageType>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>

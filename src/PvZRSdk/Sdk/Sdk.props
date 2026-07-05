@@ -21,7 +21,6 @@
 
   <PropertyGroup>
     <IsModBuild Condition="'$(IsModBuild)' == ''">true</IsModBuild>
-    <EnableDefaultModReferences Condition="'$(EnableDefaultModReferences)' == ''">true</EnableDefaultModReferences>
   </PropertyGroup>
 
   <PropertyGroup>
