@@ -1,8 +1,4 @@
 <Project>
-  
-  <Target Name="PrintSourceRoot" BeforeTargets="BeforeBuild">
-    <Message Text="SourceRoot is: @(SourceRoot)" Importance="high" />
-  </Target>
 
   <Target Name="PrintPvzReDir" BeforeTargets="BeforeBuild">
     <Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />

@@ -1,5 +1,13 @@
 <Project>
-  
+
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildProjectDirectory)/" />
+  </ItemGroup>
+
+  <Target Name="PrintSourceRoot" BeforeTargets="BeforeBuild">
+    <Message Text="SourceRoot is: @(SourceRoot)" Importance="high" />
+  </Target>
+ 
   <PropertyGroup>
     <GenerateDependencyFile>false</GenerateDependencyFile>
   </PropertyGroup>

@@ -2,10 +2,6 @@
   
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
-  <ItemGroup>
-    <SourceRoot Include="$(MSBuildProjectDirectory)/" />
-  </ItemGroup>
-
   <PropertyGroup>
     <PvzReDir Condition="'$(PvzReDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\PVZ Replanted</PvzReDir>
   </PropertyGroup>
