@@ -23,7 +23,7 @@
 
   <ItemGroup>
 
-    <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.*">
+    <PackageReference Include="NewStyleCop.Analyzers" Version="1.2.*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
