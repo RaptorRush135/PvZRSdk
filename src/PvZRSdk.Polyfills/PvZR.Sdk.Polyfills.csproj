@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <MeziantouPolyfill_GenerateDebugFile>true</MeziantouPolyfill_GenerateDebugFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MeziantouPolyfill_ExcludedPolyfills>T:System.Net.Mime.|F:System.Net.Mime.|M:System.Console.|M:System.Linq.AsyncEnumerable.|M:System.Threading.|T:System.Threading.</MeziantouPolyfill_ExcludedPolyfills>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Polyfill" Version="1.0.157">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="PublicizeAssembly" AfterTargets="Build">
+    <Exec Command="dotnet tool run assembly-publicizer -- -f &quot;$(TargetPath)&quot;" />
+  </Target>
+
+</Project>
