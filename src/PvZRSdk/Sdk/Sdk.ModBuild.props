@@ -23,9 +23,10 @@
     <Error Condition="Exists('$(PvzReDir)') and !Exists('$(PvzReDir)\MelonLoader')" Text="MelonLoader folder not found under '$(PvzReDir)'. Ensure MelonLoader is installed." />
   </Target>
 
-  <PropertyGroup>
-    <VersionFile>
-      <![CDATA[
+  <Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)ModInfo.cs">
+    <PropertyGroup>
+      <VersionFile>
+        <![CDATA[
 namespace $(RootNamespace).Metadata%3B
 
 internal static class ModInfo
@@ -39,10 +40,8 @@ internal static class ModInfo
     public const string DownloadLink = "$(ModDownloadLink)"%3B
 }
       ]]>
-    </VersionFile>
-  </PropertyGroup>
-  
-  <Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)ModInfo.cs">
+      </VersionFile>
+    </PropertyGroup>
     <PropertyGroup>
       <GeneratedFilePath>$(IntermediateOutputPath)ModInfo.cs</GeneratedFilePath>
     </PropertyGroup>

@@ -20,9 +20,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ModVersion>0.0.1</ModVersion>
-    <ModAuthor>???</ModAuthor>
-    <ModDownloadLink>TODO</ModDownloadLink>
+    <ModVersion Condition="'$(ModVersion)' == ''">0.0.1</ModVersion>
+    <ModAuthor Condition="'$(ModAuthor)' == ''">???</ModAuthor>
+    <ModDownloadLink Condition="'$(ModDownloadLink)' == ''">TODO</ModDownloadLink>
   </PropertyGroup>
 
   <PropertyGroup>
