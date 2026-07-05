@@ -15,6 +15,11 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
   <PropertyGroup>
     <IsModBuild Condition="'$(IsModBuild)' == ''">true</IsModBuild>
   </PropertyGroup>
