@@ -2,7 +2,6 @@
   
   <PropertyGroup>
     <GenerateDependencyFile>false</GenerateDependencyFile>
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
