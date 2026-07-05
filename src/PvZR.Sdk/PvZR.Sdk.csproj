@@ -13,7 +13,7 @@
     <None Include="Sdk\**" Pack="true" PackagePath="Sdk" />
     <None Include="Config\**" Pack="true" PackagePath="Config" />
   </ItemGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
