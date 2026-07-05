@@ -23,6 +23,10 @@
     <Error Condition="Exists('$(PvzReDir)') and !Exists('$(PvzReDir)\MelonLoader')" Text="MelonLoader folder not found under '$(PvzReDir)'. Ensure MelonLoader is installed." />
   </Target>
 
+  <Target Name="PrintPvzReDir" BeforeTargets="BeforeBuild">
+    <Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />
+  </Target>
+
   <Target Name="PrintModVersion" BeforeTargets="GenerateVersionFile">
     <Message Text="ModVersion: $(ModVersion)" Importance="high" />
   </Target>

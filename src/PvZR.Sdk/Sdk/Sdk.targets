@@ -1,9 +1,5 @@
 <Project>
 
-  <Target Name="PrintPvzReDir" BeforeTargets="BeforeBuild">
-    <Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />
-  </Target>
-
   <ItemGroup>
     <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\Config\*.editorconfig" />
   </ItemGroup>
