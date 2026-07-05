@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>PvZR.Sdk</PackageId>
-    <Version>0.0.16</Version>
     <PackageType>MSBuildSdk</PackageType>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
@@ -14,8 +13,5 @@
     <None Include="Config\**" Pack="true" PackagePath="Config" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
 
 </Project>
