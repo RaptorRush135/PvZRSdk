@@ -5,6 +5,13 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
+  <Target Name="AddDateToDebugVersion" AfterTargets="MinVer" Condition="'$(Configuration)' == 'Debug'">
+    <PropertyGroup>
+      <Version>$(Version)-dev$([System.DateTime]::UtcNow.ToString(yyyyMMddHHmmss))</Version>
+      <PackageVersion>$(Version)</PackageVersion>
+    </PropertyGroup>
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="MinVer" Version="7.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
