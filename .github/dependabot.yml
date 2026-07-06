@@ -1,0 +1,30 @@
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "12:00"
+      timezone: "UTC"
+    commit-message:
+      prefix: "ci(actions)"
+
+  - package-ecosystem: "nuget"
+    directory: "/src/PvZR.Sdk"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "12:00"
+      timezone: "UTC"
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      analyzers:
+        patterns:
+          - "NewStyleCop.Analyzers"
+          - "SonarAnalyzer.CSharp"
+          - "Roslynator.Analyzers"
