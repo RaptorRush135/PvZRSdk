@@ -31,9 +31,13 @@
     <Message Text="ModVersion: $(ModVersion)" Importance="high" />
   </Target>
 
-  <Target Name="GenerateVersionFile" BeforeTargets="BeforeCompile;CoreCompile" DependsOnTargets="SetModVersion" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)ModInfo.cs">
-    <PropertyGroup>
-      <VersionFile>
+  <Target Name="ValidateModMelonType" BeforeTargets="GenerateSourceFiles">
+    <Error Condition="'$(ModMelonType)' == ''" Text="ModMelonType must be set." />
+  </Target>
+
+  <ItemGroup>
+    <GeneratedFile Include="ModInfo">
+      <Content>
         <![CDATA[
 namespace $(RootNamespace).Metadata%3B
 
@@ -47,17 +51,48 @@ internal static class ModInfo
 
     public const string DownloadLink = "$(ModDownloadLink)"%3B
 }
-      ]]>
-      </VersionFile>
-    </PropertyGroup>
-    <PropertyGroup>
-      <GeneratedFilePath>$(IntermediateOutputPath)ModInfo.cs</GeneratedFilePath>
-    </PropertyGroup>
+]]>
+      </Content>
+    </GeneratedFile>
+
+    <GeneratedFile Include="MelonInfoMetadata">
+      <Content>
+        <![CDATA[
+using $(RootNamespace).Metadata%3B
+
+[assembly: MelonLoader.MelonInfo(typeof($(ModMelonType)), ModInfo.Name, ModInfo.Version, ModInfo.Author, ModInfo.DownloadLink)]
+]]>
+      </Content>
+    </GeneratedFile>
+
+    <GeneratedFile Include="MelonGameMetadata">
+      <Content>
+        <![CDATA[
+[assembly: MelonLoader.MelonGame("PopCap Games", "PvZ Replanted")]
+]]>
+      </Content>
+    </GeneratedFile>
+
+    <GeneratedFile Include="MelonColorMetadata" Condition="'$(ModColor)' != ''">
+      <Content>
+        <![CDATA[
+[assembly: MelonLoader.MelonColor($(ModColor))]
+]]>
+      </Content>
+    </GeneratedFile>
+  </ItemGroup>
+
+  <Target Name="GenerateSourceFiles" BeforeTargets="BeforeCompile;CoreCompile" DependsOnTargets="SetModVersion" Inputs="$(MSBuildAllProjects)" Outputs="@(GeneratedFile->'$(IntermediateOutputPath)%(Identity).cs')">
     <ItemGroup>
-      <Compile Include="$(GeneratedFilePath)" />
-      <FileWrites Include="$(GeneratedFilePath)" />
+      <GeneratedFile>
+        <Path>$(IntermediateOutputPath)%(Identity).cs</Path>
+      </GeneratedFile>
     </ItemGroup>
-    <WriteLinesToFile File="$(GeneratedFilePath)" Lines="$(VersionFile)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+    <ItemGroup>
+      <Compile Include="%(GeneratedFile.Path)" />
+      <FileWrites Include="%(GeneratedFile.Path)" />
+    </ItemGroup>
+    <WriteLinesToFile File="%(GeneratedFile.Path)" Lines="%(GeneratedFile.Content)" WriteOnlyWhenDifferent="true" Overwrite="true" />
   </Target>
 
   <ItemGroup>
