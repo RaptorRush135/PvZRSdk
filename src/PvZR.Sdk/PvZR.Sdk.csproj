@@ -2,10 +2,16 @@
   
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <PackageId>PvZR.Sdk</PackageId>
     <PackageType>MSBuildSdk</PackageType>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,5 +19,19 @@
     <None Include="Config\**" Pack="true" PackagePath="Config" />
     <None Include="Polyfills\**" Pack="true" PackagePath="Polyfills" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="7.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="AddDateToDebugVersion" AfterTargets="MinVer" Condition="'$(Configuration)' == 'Debug'">
+    <PropertyGroup>
+      <Version>$(Version)-dev$([System.DateTime]::UtcNow.ToString(yyyyMMddHHmmss))</Version>
+      <PackageVersion>$(Version)</PackageVersion>
+    </PropertyGroup>
+  </Target>
 
 </Project>
