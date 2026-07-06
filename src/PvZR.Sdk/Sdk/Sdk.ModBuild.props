@@ -84,7 +84,9 @@ internal static class ModInfo
     <PropertyGroup>
       <ZipStage>$(BaseIntermediateOutputPath)ZipStage</ZipStage>
       <ZipFolderName>Mods</ZipFolderName>
-      <ZipFileName>$(AssemblyName)$(ModVersion.Replace('.', '-')).zip</ZipFileName>
+      <ZipVersionSuffix Condition="'$(ModZipReplaceVersionDots)' == 'true'">$(ModVersion.Replace('.', '-'))</ZipVersionSuffix>
+      <ZipVersionSuffix Condition="'$(ModZipReplaceVersionDots)' != 'true'">$(ModVersion)</ZipVersionSuffix>
+      <ZipFileName>$(AssemblyName)$(ZipVersionSuffix).zip</ZipFileName>
     </PropertyGroup>
     
     <ItemGroup>

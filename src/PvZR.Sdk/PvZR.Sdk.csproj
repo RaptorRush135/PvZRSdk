@@ -14,5 +14,4 @@
     <None Include="Polyfills\**" Pack="true" PackagePath="Polyfills" />
   </ItemGroup>
 
-
 </Project>

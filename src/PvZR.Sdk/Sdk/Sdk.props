@@ -22,6 +22,7 @@
 
   <PropertyGroup>
     <IsModBuild Condition="'$(IsModBuild)' == ''">true</IsModBuild>
+    <ModZipReplaceVersionDots Condition="'$(ModZipReplaceVersionDots)' == ''">true</ModZipReplaceVersionDots>
   </PropertyGroup>
 
   <PropertyGroup>
