@@ -27,9 +27,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <PropertyGroup>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerDefaultPreReleaseIdentifiers>dev</MinVerDefaultPreReleaseIdentifiers>
+  </PropertyGroup>
+
   <Target Name="AddDateToDebugVersion" AfterTargets="MinVer" Condition="'$(Configuration)' == 'Debug'">
     <PropertyGroup>
-      <Version>$(Version)-dev$([System.DateTime]::UtcNow.ToString(yyyyMMddHHmmss))</Version>
+      <Version>$(Version)-$([System.DateTime]::UtcNow.ToString(yyyyMMddHHmmss))</Version>
       <PackageVersion>$(Version)</PackageVersion>
     </PropertyGroup>
   </Target>
