@@ -1,9 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
+  <PropertyGroup>
+    <PackageId>RaptorRush135.PvZR.Sdk</PackageId>
+    <Authors>RaptorRush135</Authors>
+    <Title>PvZR SDK</Title>
+    <Description>A MSBuild Sdk for creating MelonLoader mods for Plants vs. Zombies™: Replanted.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/RaptorRush135/PvZRSdk</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/RaptorRush135/PvZRSdk</PackageProjectUrl>
+  </PropertyGroup>
+ 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <PackageId>PvZR.Sdk</PackageId>
     <PackageType>MSBuildSdk</PackageType>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
