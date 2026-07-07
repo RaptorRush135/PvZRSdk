@@ -5,7 +5,7 @@
   </ItemGroup>
 
   <Target Name="PrintSourceRoot" BeforeTargets="BeforeBuild">
-    <Message Text="SourceRoot is: @(SourceRoot)" Importance="high" />
+    <Message Text="SourceRoot: @(SourceRoot)" Importance="high" />
   </Target>
  
   <PropertyGroup>
@@ -24,7 +24,7 @@
   </Target>
 
   <Target Name="PrintPvzReDir" BeforeTargets="BeforeBuild">
-    <Message Text="PvzReDir is: $(PvzReDir)" Importance="high" />
+    <Message Text="PvzReDir: $(PvzReDir)" Importance="high" />
   </Target>
 
   <Target Name="PrintModVersion" BeforeTargets="GenerateVersionFile">
