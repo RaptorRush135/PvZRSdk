@@ -1,0 +1,10 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <IsModBuild>false</IsModBuild>
+  </PropertyGroup>
+
+  <Import Project="..\PvZR.Sdk\Sdk\Sdk.props" />
+  <Import Project="..\PvZR.Sdk\Sdk\Sdk.targets" />
+
+</Project>
