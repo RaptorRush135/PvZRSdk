@@ -1,0 +1,26 @@
+name: Validate build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Pack Sdk
+        working-directory: src/PvZR.Sdk
+        run: dotnet pack -c Release
+
+      - name: Build Dependabot dummy project
+        working-directory: src/Dependabot
+        run: dotnet build -c Release
