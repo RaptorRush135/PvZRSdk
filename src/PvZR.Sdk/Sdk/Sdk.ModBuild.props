@@ -27,18 +27,18 @@
     <Message Text="PvzReDir: $(PvzReDir)" Importance="high" />
   </Target>
 
-  <Target Name="PrintModVersion" BeforeTargets="GenerateVersionFile">
-    <Message Text="ModVersion: $(ModVersion)" Importance="high" />
-  </Target>
-
   <Target Name="ValidateModMelonType" BeforeTargets="GenerateSourceFiles">
     <Error Condition="'$(ModMelonType)' == ''" Text="ModMelonType must be set." />
   </Target>
 
-  <ItemGroup>
-    <GeneratedFile Include="ModInfo">
-      <Content>
-        <![CDATA[
+  <Target Name="ComposeGeneratedFiles" BeforeTargets="GenerateSourceFiles" DependsOnTargets="SetModVersion">
+
+    <Message Text="ModVersion: $(ModVersion)" Importance="high" />
+
+    <ItemGroup>
+      <GeneratedFile Include="ModInfo">
+        <Content>
+          <![CDATA[
 namespace $(RootNamespace).Metadata%3B
 
 internal static class ModInfo
@@ -52,37 +52,38 @@ internal static class ModInfo
     public const string DownloadLink = "$(ModDownloadLink)"%3B
 }
 ]]>
-      </Content>
-    </GeneratedFile>
+        </Content>
+      </GeneratedFile>
 
-    <GeneratedFile Include="MelonInfoMetadata">
-      <Content>
-        <![CDATA[
+      <GeneratedFile Include="MelonInfoMetadata">
+        <Content>
+          <![CDATA[
 using $(RootNamespace).Metadata%3B
 
 [assembly: MelonLoader.MelonInfo(typeof($(ModMelonType)), ModInfo.Name, ModInfo.Version, ModInfo.Author, ModInfo.DownloadLink)]
 ]]>
-      </Content>
-    </GeneratedFile>
+        </Content>
+      </GeneratedFile>
 
-    <GeneratedFile Include="MelonGameMetadata">
-      <Content>
-        <![CDATA[
+      <GeneratedFile Include="MelonGameMetadata">
+        <Content>
+          <![CDATA[
 [assembly: MelonLoader.MelonGame("PopCap Games", "PvZ Replanted")]
 ]]>
-      </Content>
-    </GeneratedFile>
+        </Content>
+      </GeneratedFile>
 
-    <GeneratedFile Include="MelonColorMetadata" Condition="'$(ModColor)' != ''">
-      <Content>
-        <![CDATA[
+      <GeneratedFile Include="MelonColorMetadata" Condition="'$(ModColor)' != ''">
+        <Content>
+          <![CDATA[
 [assembly: MelonLoader.MelonColor($(ModColor))]
 ]]>
-      </Content>
-    </GeneratedFile>
-  </ItemGroup>
+        </Content>
+      </GeneratedFile>
+    </ItemGroup>
+  </Target>
 
-  <Target Name="GenerateSourceFiles" BeforeTargets="BeforeCompile;CoreCompile" DependsOnTargets="SetModVersion" Inputs="$(MSBuildAllProjects)" Outputs="@(GeneratedFile->'$(IntermediateOutputPath)%(Identity).cs')">
+  <Target Name="GenerateSourceFiles" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="@(GeneratedFile->'$(IntermediateOutputPath)%(Identity).cs')">
     <ItemGroup>
       <GeneratedFile>
         <Path>$(IntermediateOutputPath)%(Identity).cs</Path>
