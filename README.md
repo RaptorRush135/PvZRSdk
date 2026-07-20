@@ -16,6 +16,19 @@ To get started, see [PvZRModTemplate](https://github.com/RaptorRush135/PvZRModTe
 
 - [Version Management](#-version-management)
 
+> [!WARNING]
+> If you encounter the following error when building:
+>
+> ```text
+> The target "MinVer" does not exist in the project.
+> ```
+>
+> Run (from the same directory as the `.slnx`):
+>
+> ```shell
+> dotnet restore
+> ```
+
 ---
 
 ## ✨ Features
