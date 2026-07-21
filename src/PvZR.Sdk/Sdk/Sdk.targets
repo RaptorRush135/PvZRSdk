@@ -4,6 +4,11 @@
     <EditorConfigFiles Include="$(MSBuildThisFileDirectory)..\Config\*.editorconfig" />
   </ItemGroup>
 
+  <!-- Give each project a unique MinVer cache key to avoid version bleed between projects -->
+  <PropertyGroup Condition="'$(MinVerBuildMetadata)' == ''">
+    <MinVerBuildMetadata>$(MSBuildProjectName)</MinVerBuildMetadata>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(ModVersion)' != ''">
     <Version>$(ModVersion)</Version>
   </PropertyGroup>
