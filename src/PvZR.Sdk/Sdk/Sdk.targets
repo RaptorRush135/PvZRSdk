@@ -9,18 +9,19 @@
     <MinVerBuildMetadata>$(MSBuildProjectName)</MinVerBuildMetadata>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(ModVersion)' != ''">
-    <Version>$(ModVersion)</Version>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(ModVersion)' == ''">
+  <ItemGroup>
     <PackageReference Include="MinVer" Version="7.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="SetModVersion" DependsOnTargets="MinVer" Condition="'$(ModVersion)' == ''">
+  <PropertyGroup Condition="'$(ModVersion)' != ''">
+    <Version>$(ModVersion)</Version>
+    <MinVerSkip>true</MinVerSkip>
+  </PropertyGroup>
+
+  <Target Name="SetModVersion" DependsOnTargets="MinVer" Condition="'$(ModVersion)' == '' AND '$(DesignTimeBuild)' != 'true'">
     <PropertyGroup>
       <ModVersion>$(Version)</ModVersion>
     </PropertyGroup>
