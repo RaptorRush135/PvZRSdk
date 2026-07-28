@@ -79,7 +79,7 @@ Integrated code analyzers:
 | `ModDownloadLink`          | `string` | `TODO`                                                        | Download or repo URL of the mod.                                                                                                                 |
 | `ModMelonType`             | `string` | *(Required)*                                                  | Fully qualified type name of the mod class that inherits from `MelonMod`.                                                                        |
 | `ModColor`                 | `string` | *(Optional)*                                                  | Color for the mod in the MelonLoader console. Format: ARGB (e.g., `255, 0, 200, 0`).                                                             |
-| `ModZipReplaceVersionDots` | `bool`   | `true`                                                        | Replace dots in version number with dashes in zip filename (e.g., `MyMod1.0.0.zip` → `MyMod1-0-0.zip`).                                          |
+| `ModZipReplaceVersionDots` | `bool`   | `true`                                                        | Replace dots in version number with dashes in zip filename (e.g., `MyMod_1.0.0.zip` → `MyMod_1-0-0.zip`).                                        |
 | `ModEnvironmentReference`  | `Item`   | *(None)*                                                      | Adds an assembly reference from `$(PvzReDir)\MelonLoader\net6` (e.g., `<ModEnvironmentReference Include="Microsoft.Extensions.Logging.dll" />`). |
 
 ---
