@@ -122,7 +122,7 @@ using $(RootNamespace).Metadata%3B
       <ZipFolderName>Mods</ZipFolderName>
       <ZipVersionSuffix Condition="'$(ModZipReplaceVersionDots)' == 'true'">$(ModVersion.Replace('.', '-'))</ZipVersionSuffix>
       <ZipVersionSuffix Condition="'$(ModZipReplaceVersionDots)' != 'true'">$(ModVersion)</ZipVersionSuffix>
-      <ZipFileName>$(AssemblyName)$(ZipVersionSuffix).zip</ZipFileName>
+      <ZipFileName>$(AssemblyName)_$(ZipVersionSuffix).zip</ZipFileName>
     </PropertyGroup>
     
     <ItemGroup>
