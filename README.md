@@ -70,16 +70,17 @@ Integrated code analyzers:
 
 ### Configurable Properties
 
-| Property                   | Type     | Default Value                                                 | Description                                                                                                                          |
-|----------------------------|----------|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `IsModBuild`               | `bool`   | `true`                                                        | Whether to apply mod-specific build targets (deployment, packaging, Melon References & Metadata). Set `false` for library projects.  |
-| `PvzReDir`                 | `string` | `C:\Program Files (x86)\Steam\steamapps\common\PVZ Replanted` | Path to PvZ: Replanted installation directory.                                                                                       |
-| `ModVersion`               | `string` | *(Auto-detected by MinVer)*                                   | Explicit mod version override. If empty, MinVer automatically determines version from git tags.                                      |
-| `ModAuthor`                | `string` | `???`                                                         | Mod creator/author name.                                                                                                             |
-| `ModDownloadLink`          | `string` | `TODO`                                                        | Download or repo URL of the mod.                                                                                                     |
-| `ModMelonType`             | `string` | *(Required)*                                                  | Fully qualified type name of the mod class that inherits from `MelonMod`.                                                            |
-| `ModColor`                 | `string` | *(Optional)*                                                  | Color for the mod in the MelonLoader console. Format: ARGB (e.g., `255, 0, 200, 0`).                                                 |
-| `ModZipReplaceVersionDots` | `bool`   | `true`                                                        | Replace dots in version number with dashes in zip filename (e.g., `MyMod1.0.0.zip` → `MyMod1-0-0.zip`).                              |
+| Property                   | Type     | Default Value                                                 | Description                                                                                                                                      |
+|----------------------------|----------|---------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `IsModBuild`               | `bool`   | `true`                                                        | Whether to apply mod-specific build targets (deployment, packaging, Melon References & Metadata). Set `false` for library projects.              |
+| `PvzReDir`                 | `string` | `C:\Program Files (x86)\Steam\steamapps\common\PVZ Replanted` | Path to PvZ: Replanted installation directory.                                                                                                   |
+| `ModVersion`               | `string` | *(Auto-detected by MinVer)*                                   | Explicit mod version override. If empty, MinVer automatically determines version from git tags.                                                  |
+| `ModAuthor`                | `string` | `???`                                                         | Mod creator/author name.                                                                                                                         |
+| `ModDownloadLink`          | `string` | `TODO`                                                        | Download or repo URL of the mod.                                                                                                                 |
+| `ModMelonType`             | `string` | *(Required)*                                                  | Fully qualified type name of the mod class that inherits from `MelonMod`.                                                                        |
+| `ModColor`                 | `string` | *(Optional)*                                                  | Color for the mod in the MelonLoader console. Format: ARGB (e.g., `255, 0, 200, 0`).                                                             |
+| `ModZipReplaceVersionDots` | `bool`   | `true`                                                        | Replace dots in version number with dashes in zip filename (e.g., `MyMod1.0.0.zip` → `MyMod1-0-0.zip`).                                          |
+| `ModEnvironmentReference`  | `Item`   | *(None)*                                                      | Adds an assembly reference from `$(PvzReDir)\MelonLoader\net6` (e.g., `<ModEnvironmentReference Include="Microsoft.Extensions.Logging.dll" />`). |
 
 ---
 
