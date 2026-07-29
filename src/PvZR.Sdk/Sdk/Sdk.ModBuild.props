@@ -103,10 +103,6 @@ using $(RootNamespace).Metadata%3B
     <ModEnvironmentReference Include="Il2CppInterop.Runtime.dll" />
     <ModEnvironmentReference Include="Il2CppInterop.Common.dll" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="@(ModEnvironmentReference->'$(PvzReDir)\MelonLoader\net6\%(Identity)')" />
-  </ItemGroup>
 
   <Target Name="CopyDllToMods" AfterTargets="PostBuildEvent">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PvzReDir)\Mods" />

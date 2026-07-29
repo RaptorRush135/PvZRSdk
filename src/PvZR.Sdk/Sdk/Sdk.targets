@@ -57,6 +57,10 @@
 
   <Import Project="Sdk.ModBuild.props" Condition="'$(IsModBuild)' == 'true'" />
 
+  <ItemGroup>
+    <Reference Include="@(ModEnvironmentReference->'$(PvzReDir)\MelonLoader\net6\%(Identity)')" />
+  </ItemGroup>
+
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   
 </Project>
