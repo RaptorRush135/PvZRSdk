@@ -129,8 +129,19 @@ using $(RootNamespace).Metadata%3B
       <FilesToZip Include="$(TargetDir)**\*" Exclude="$(TargetDir)**\*.zip" />
     </ItemGroup>
     <RemoveDir Directories="$(ZipStage)" />
-    <MakeDir Directories="$(ZipStage)\$(ZipFolderName)" />
     <Copy SourceFiles="@(FilesToZip)" DestinationFolder="$(ZipStage)\$(ZipFolderName)" />
+
+    <ItemGroup>
+      <ModZipInclude Condition="'%(ModZipInclude.ZipPath)' == ''">
+        <ZipPath>%(Filename)%(Extension)</ZipPath>
+      </ModZipInclude>
+      <ModZipInclude>
+        <DestinationPath>$(ZipStage)\%(ModZipInclude.ZipPath)</DestinationPath>
+      </ModZipInclude>
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ModZipInclude)" DestinationFiles="@(ModZipInclude->'%(DestinationPath)')" Condition="'@(ModZipInclude)' != ''" />
+
     <ZipDirectory SourceDirectory="$(ZipStage)" DestinationFile="$(OutputPath)$(ZipFileName)" Overwrite="true" />
     <RemoveDir Directories="$(ZipStage)" />
   
