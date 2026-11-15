@@ -30,7 +30,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)..\Polyfills\*.cs" Visible="false" />
 
-    <PackageReference Include="PolySharp" Version="1.16.0">
+    <PackageReference Include="PolySharp" Version="1.17.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
