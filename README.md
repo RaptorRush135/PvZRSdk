@@ -61,7 +61,7 @@ To get started, see [PvZRModTemplate](https://github.com/RaptorRush135/PvZRModTe
 
 ### 🔍 Code Quality Analysis
 Integrated code analyzers:
-- [NewStyleCop.Analyzers](https://github.com/bjornhellander/NewStyleCopAnalyzers)
+- [StyleCop.Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers)
 - [SonarAnalyzer.CSharp](https://github.com/SonarSource/sonar-dotnet)
 - [Roslynator.Analyzers](https://github.com/dotnet/roslynator)
 
